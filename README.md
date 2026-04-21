@@ -8,7 +8,7 @@ This documents helps to understand how to use the files to reproduces the result
 
 
 ## Dataset Generation
-Start with file 3. hindi_claim_verification_v4 (1).ipynb This File does not requires any input to run. Just connect to GPU enables device and run all cells. 
+Start with file 3. hindi_claim_verification_v4 (1).ipynb. This File does not requires any input to run. Just connect to GPU enabled device and run all cells. 
 We experimented in colab T4 GPU runtime type which is free version to get the results. 
 
 ---
