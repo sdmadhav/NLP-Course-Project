@@ -8,6 +8,55 @@ This documents helps to understand how to use the files to reproduces the result
 
 
 ## Dataset Generation
+### Architecture
+```
+Wikipedia Infoboxes
+       ↓
+  Knowledge Base  (Stage 1)
+       ↓                    ↓
+HiNER entity typing    IndoWordNet lookup
+(for entity pool)      (synonyms, hypernyms,
+                        hyponyms, siblings, similar)
+       ↓                    ↓
+  Claims DB  ←────── Transformations (Stage 5)
+  (Stage 6)                 ↑
+       ↓              Numerical Mutation
+  Evidence DB            Entity Swap (HiNER)
+  (Stage 3)              Relation Mutation (IWN hypernymy/siblings)
+       ↓                 Semantic Contrast (IWN co-hyponyms/similar)
+  Final Dataset          Paraphrase(IWN synonyms) + Corruption
+  (Stage 7 — JOIN)
+       ↓
+  NLI Training Files
+```
+
+### IndoWordNet Relations Used
+| IWN Relation | How We Use It |
+|---|---|
+| `synsets()` → `lemma_names()` | Synonyms of a key word — vary evidence surface form |
+| `SynsetRelations.HYPERNYMY` | Infer semantic category of a key (पत्नी → परिवार-सदस्य) |
+| `SynsetRelations.HYPONYMY` | Get sub-types; combine with HYPERNYMY to find siblings |
+| `SynsetRelations.SIMILAR` | Semantically related but distinct alternatives |
+| Co-hyponyms (siblings) | Best semantic contrast — same category, different concept |
+
+### HiNER Usage
+| HiNER Output | How We Use It |
+|---|---|
+| B-PER / I-PER | Tag value as PERSON → route to person entity pool |
+| B-LOC / I-LOC | Tag value as LOCATION → route to location pool |
+| B-ORG / I-ORG | Tag value as ORGANIZATION → route to org pool |
+| Type of distractor | Verify replacement has same NER type as original |
+| Type of key context | Infer what entity type the infobox key expects |
+
+### Key Design Rules
+- HiNER types all entities — no manual type lists
+- IWN siblings replace hardcoded contrasts — no manual antonym maps
+- IWN synonyms vary key surface form in evidence — different from claim template
+- IWN HYPERNYMY determines key semantic roles — no manual key groups
+- Five-point validation on every FALSE claim
+- Page-level stratified split
+
+### DATASET GENERATION FILES
 Start with file 3. hindi_claim_verification_v4 (1).ipynb. This File does not requires any input to run. Just connect to GPU enabled device and run all cells. 
 We experimented in colab T4 GPU runtime type which is free version to get the results. 
 
