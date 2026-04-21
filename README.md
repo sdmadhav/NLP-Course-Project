@@ -1,4 +1,4 @@
-# Claim Verification for LOW-RESOURCES LANGUAGE:HINDI
+# Claim Verification for HINDI
 
 This documents helps to understand how to use the files to reproduces the results again. You can see there are 4 files in this repository. 
 1. BERT_NLI_Claim_Verification.ipynb
