@@ -34,6 +34,7 @@ is numeric type the claim was always meaningless. So we removed all the types of
 > 
 > "key"\s*:\s*"\d+"
 
+We used VScode to search and delete the bad claims. VScode have tool to search with regex and then select all the occurances and then delete them. It can be easily done with Python as well. We choose VScode.
 After removal of this we randomly sampled the claims among 4 teammates checked the quality. After this we finally got the annotated dataset. Our final annotated dataset is dataset_full.json. 
 
 # Claim Verification
