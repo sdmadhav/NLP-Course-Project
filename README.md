@@ -61,7 +61,7 @@ Start with file 3. hindi_claim_verification_v4 (1).ipynb. This File does not req
 We experimented in colab T4 GPU runtime type which is free version to get the results. 
 
 ---
-## Output Files
+### Output Files
 ```
 hindi_cv_v4/
 ├── knowledge_base.csv   ← entity | key | value | value_type | ner_type | topic
@@ -86,6 +86,6 @@ is numeric type the claim was always meaningless. So we removed all the types of
 We used VScode to search and delete the bad claims. VScode have tool to search with regex and then select all the occurances and then delete them. It can be easily done with Python as well. We choose VScode.
 After removal of this we randomly sampled the claims among 4 teammates checked the quality. After this we finally got the annotated dataset. Our final annotated dataset is dataset_full.json. 
 
-# Claim Verification
+## Claim Verification
 For NLI task we used file 1. BERT_NLI_Claim_Verification.ipynb for which the input is file 2. dataset_full.json (Annotated). Same again runn all the cells in ipynb file
 same runtimetype as colab T4 GPU. In 10min you will get the classification  classwise SUPPORTS/REFUTES results and transformationwise. 
