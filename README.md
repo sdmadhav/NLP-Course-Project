@@ -29,7 +29,9 @@ hindi_cv_v4/
 Our results are stored in v4.zip file. After that we did human annotation in file dataset_full.json to remove logically ill defined claims which can not be classified as either true or false or no true factual assertions. We found the pattern that when key in the wikipedia infobox 
 is numeric type the claim was always meaningless. So we removed all the types of claims which had key as numeric type. The regex used are as follows:
 > "key"\s*:\s*"\d+[^"]*"
+> 
 > "key"\s*:\s*"\d{4}-(present|\d{4})"
+> 
 > "key"\s*:\s*"\d+"
 
 After removal of this we randomly sampled the claims among 4 teammates checked the quality. After this we finally got the annotated dataset. Our final annotated dataset is dataset_full.json. 
